@@ -52,7 +52,7 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>jahiacom-templates</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>Jahiacom Templates</name>
   <description>Template set based on the templates powering www.jahia.com.</description>
