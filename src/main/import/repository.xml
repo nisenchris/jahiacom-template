@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
    <modules jcr:primaryType="jnt:modules">
-      <jahiacom-templates j:dependencies="animate bootstrap4-components bootstrap4-core default facets font-awesome jexperience jexperience-components jquery popperjs search"
+      <jahiacom-templates j:dependencies="animate bootstrap4-components bootstrap4-core default facets font-awesome jahia-authentication jahia-oauth jexperience jexperience-components jquery popperjs search"
                           j:installedModules="jahiacom-templates"
                           j:modulePriority="0"
                           j:moduleType="templatesSet"
@@ -120,7 +120,7 @@
                                   typeOfGrid="predefinedGrid"/>
                   </pagecontent>
                </default>
-               <blogs j:applyOn="jcomnt:experienceReference viant:experience viawebnt:experienceReference"
+               <blogs j:applyOn="jcnt:blogEntry"
                       j:defaultTemplate="true"
                       j:hiddenTemplate="true"
                       j:priority="1000"
@@ -131,27 +131,21 @@
                                     jcr:title="blogs"/>
                   <pagecontent jcr:mixinTypes="jmix:systemNameReadonly"
                                jcr:primaryType="jnt:contentList">
-                     <layout-and-grid gridClasses="col-md-8"
-                                      gridLayout="fixed-width"
-                                      jcr:mixinTypes="bootstrap4mix:createContainer bootstrap4mix:createRow bootstrap4mix:createSection bootstrap4mix:customGrid"
+                     <layout-and-grid gridLayout="fixed-width"
+                                      jcr:mixinTypes="bootstrap4mix:createContainer bootstrap4mix:createSection"
                                       jcr:primaryType="bootstrap4nt:grid"
-                                      rowCssClass="justify-content-md-center blog"
-                                      rowHorizontalAlignment="default"
-                                      rowVerticalAlignment="default"
                                       sectionCssClass="bg-white entry-content"
-                                      sectionElement="section"
-                                      typeOfGrid="customGrid">
-                        <layout-and-grid-col0 jcr:mixinTypes="jmix:systemNameReadonly"
-                                              jcr:primaryType="jnt:contentList">
-                           <main-resource-display j:mainResourceView="blog-full-page"
-                                                  jcr:primaryType="jnt:mainResourceDisplay"/>
+                                      sectionElement="section">
+                        <layout-and-grid jcr:mixinTypes="jmix:systemNameReadonly"
+                                         jcr:primaryType="jnt:contentList">
+                           <main-resource-display j:mainResourceView="detail" jcr:primaryType="jnt:mainResourceDisplay"/>
                            <back jcr:primaryType="jnt:backToParentPage">
                               <j:translation_en jcr:language="en"
                                                 jcr:mixinTypes="mix:title"
                                                 jcr:primaryType="jnt:translation"
                                                 jcr:title="Back"/>
                            </back>
-                        </layout-and-grid-col0>
+                        </layout-and-grid>
                      </layout-and-grid>
                   </pagecontent>
                </blogs>

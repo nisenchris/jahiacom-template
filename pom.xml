@@ -44,7 +44,8 @@
         please contact the sales department at sales@jahia.com.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.jahiapresales.modules</groupId>
@@ -56,9 +57,13 @@
   <packaging>bundle</packaging>
   <name>Jahiacom Templates</name>
   <description>Template set based on the templates powering www.jahia.com.</description>
+  <scm>
+    <connection>scm:git:https://github.com/nisenchris/jahiacom-template.git</connection>
+    <developerConnection>scm:git:https://github.com/nisenchris/jahiacom-template.git</developerConnection>
+  </scm>
   <properties>
-    <jahia-depends>animate,bootstrap4-components,bootstrap4-core,default,font-awesome,jquery,search,popperjs,facets,jexperience,jexperience-components,jahia-authentication,jahia-oauth</jahia-depends>
     <jahia-module-signature>MCwCFEfhjFGhPh6EDuvxZRibfFMM/PzqAhQJg5lsLYcScQaQWAz9ZL6qqaQIyw==</jahia-module-signature>
+    <jahia-depends>animate,bootstrap4-components,bootstrap4-core,default,font-awesome,jquery,search,popperjs,facets,jexperience,jexperience-components,jahia-authentication,jahia-oauth</jahia-depends>
   </properties>
   <dependencies>
     <dependency>
@@ -102,9 +107,7 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <_dsannotations>
-              org.jahia.modules.jahiacom.initializers.*
-            </_dsannotations>
+            <_dsannotations>org.jahia.modules.jahiacom.initializers.*</_dsannotations>
             <Jahia-Module-Type>templatesSet</Jahia-Module-Type>
           </instructions>
         </configuration>
