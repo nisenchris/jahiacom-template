@@ -6,6 +6,10 @@
 <j = 'http://www.jahia.org/jahia/1.0'>
 <mix = 'http://www.jcp.org/jcr/mix/1.0'>
 <docmix = 'http://www.jahia.org/jahia/docspace/mix/1.0'> 
+<jcomnt = 'http://www.jahia.org/jcom/nt/1.0'>
+<jcommix = 'http://www.jahia.org/jcom/mix/1.0'>
+<viant = 'http://www.jahia.org/via/mix/1.0'>
+<viawebnt = 'http://www.jahia.org/viaweb/mix/1.0'>
 
 [jcmix:jahiacom] > jmix:droppableContent, jmix:editorialContent mixin
 
