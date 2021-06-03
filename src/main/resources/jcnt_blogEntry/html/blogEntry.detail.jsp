@@ -16,12 +16,6 @@
 <c:url var="blogUrl" value="${currentNode.url}" context="/"/>
 <c:set var="title" value="${currentNode.properties['jcr:title'].string}"/>
 
-<c:set var="authorNode" value="${currentNode.properties.author.node}"/>
-<c:if test="${! empty authorNode}">
-    <c:set var="authorName" value="${authorNode.properties.name.string}"/>
-    <c:set var="authorBio" value="${authorNode.properties.text.string}"/>
-    <c:set var="authorImage" value="${authorNode.properties.image.node}"/>
-</c:if>
 <c:set var="language" value="${renderContext.mainResourceLocale.language}"/>
 <fmt:setLocale value="${language}" scope="session"/>
 <c:set var="blogDate" value="${currentNode.properties['date']}"/>
@@ -46,11 +40,11 @@
             <div class="col-md-8 col-sm-12 blog">
                 <c:if test="${currentNode.properties.displayImageOnDetail.boolean}">
                     <template:include view="hidden.image">
-                        <template:param name="class" value="img-responsive"/>
+                        <template:param name="class" value="img-responsive" />
                     </template:include>
                 </c:if>
 
-                <c:set var="title" value="${currentNode.properties['jcr:title'].string}"/>
+                <c:set var="title" value="${currentNode.properties['jcr:title'].string}" />
                 <c:if test="${! empty title}">
                     <h1>${title}</h1>
                 </c:if>
@@ -60,35 +54,46 @@
                         <div class="pr-4"><i class="far fa-calendar-alt"></i>
                             ${formatedDate}
                         </div>
-                        <c:if test="${! empty authorName}">
-                            <div><i class="fas fa-user"></i> ${authorName}</div>
+                        <c:set var="authors" value="${currentNode.properties['author']}" />
+                        <c:set var="authorCount" value="${fn:length(authors)}" />
+                        <c:if test="${authorCount > 0}">
+                            <c:forEach items="${authors}" var="author" varStatus="status">
+                                <c:set var="authorName" value="${author.node.properties.name.string}" />
+                                <div><i class="fas fa-user"></i> ${authorName} &nbsp;</div>
+                            </c:forEach>
                         </c:if>
                     </div>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
                     ${currentNode.properties.text.string}
-                    <c:if test="${! empty authorName && authorName ne 'Jahia Team'}">
+                    <!-- Authors section -->
+                    <c:set var="authors" value="${currentNode.properties['author']}" />
+                    <c:set var="authorCount" value="${fn:length(authors)}" />
+                    <c:if test="${authorCount > 0}">
                         <div class="w-100 border-bottom pb-3 mb-5"></div>
-                        <div class="media">
-                            <c:if test="${! empty authorImage}">
-                                <c:url var="authorImageUrl" value="${authorImage.url}" context="/"/>
-                                <img src="${authorImageUrl}" class="rounded-circle col-md-2 mr-3" alt="${fn:escapeXml(authorName)}">
-                            </c:if>
+                        <c:forEach items="${authors}" var="author" varStatus="status">
+                            <c:set var="authorName" value="${author.node.properties.name.string}" />
+                            <c:set var="authorBio" value="${author.node.properties.text.string}" />
+                            <c:set var="authorImage" value="${author.node.properties.image.node}" />
 
-                            <div class="media-body text-secondary">
-                                <h5 class="mt-0">Author : ${authorName}</h5>
-                                ${authorBio}
+                            <div class="media" style="padding-bottom: 20px;">
+                                <c:if test="${! empty authorImage}">
+                                    <c:url var="authorImageUrl" value="${authorImage.url}" context="/" />
+                                    <img src="${authorImageUrl}" class="rounded-circle col-md-2 mr-3"
+                                        alt="${fn:escapeXml(authorName)}">
+                                </c:if>
+
+                                <div class="media-body text-secondary">
+                                    <h5 class="mt-0">Author : ${authorName}</h5>
+                                    ${authorBio}
+                                </div>
                             </div>
-                        </div>
+                        </c:forEach>
                     </c:if>
-
-                    <template:area path="blogMore" areaAsSubNode="true"/>
+                    <template:area path="blogMore" areaAsSubNode="true" />
                 </div>
             </div>
 
         </div>
-
-        <c:set var="parentPage" value="${jcr:getParentOfType(currentNode, 'jnt:page')}"/>
-        <c:url var="parentPageUrl" value="${parentPage.url}" context="/"/>
-        <a href="${parentPageUrl}" class="primary"><i class="fas fa-arrow-left"></i> <fmt:message key="label.back"/></a>
-
     </section>
 </div>

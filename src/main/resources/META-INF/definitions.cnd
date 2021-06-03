@@ -279,7 +279,7 @@
  - name (string) mandatory
 
 [jcnt:blogEntry] > jnt:content,mix:title,jcmix:image,bootstrap4mix:text,jmix:editorialContent,jmix:droppableContent
- - author (weakreference, choicelist[nodes='$currentSite//*;jcnt:blogAuthor']) mandatory
+ - author (weakreference, choicelist[nodes='//*;jcnt:blogAuthor']) multiple mandatory  
  - summary (string) i18n
  - date (date) = now()
  - displayImageOnDetail (boolean) = 'true' indexed=no

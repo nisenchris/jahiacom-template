@@ -19,11 +19,6 @@
                                           title="${fn:escapeXml(title)}" id="blog-${currentNode.identifier}"></i></a></div>
 
 
-<c:set var="authorNode" value="${currentNode.properties.author.node}"/>
-<c:if test="${! empty authorNode}">
-    <c:set var="authorName" value="${authorNode.properties.name.string}"/>
-</c:if>
-
 <c:set var="language" value="${renderContext.mainResourceLocale.language}"/>
 <fmt:setLocale value="${language}" scope="session"/>
 <c:set var="blogDate" value="${currentNode.properties['date']}"/>
@@ -57,8 +52,14 @@
             <div class="pr-4"><i class="far fa-calendar-alt"></i>
                 ${formatedDate}
             </div>
-            <c:if test="${! empty authorName}">
-                <div><i class="fas fa-user"></i> ${authorName}</div>
+            <!-- author names -->
+            <c:set var="authors" value="${currentNode.properties['author']}" />
+            <c:set var="authorCount" value="${fn:length(authors)}" />
+            <c:if test="${authorCount > 0}">
+                <c:forEach items="${authors}" var="author" varStatus="status">
+                    <c:set var="authorName" value="${author.node.properties.name.string}" />
+                         <div><i class="fas fa-user"></i> ${authorName} &nbsp;</div>                      
+                </c:forEach>
             </c:if>
         </div>
         <c:set var="summary" value="${currentNode.properties.summary.string}"/>
